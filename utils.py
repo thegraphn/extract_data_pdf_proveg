@@ -1,3 +1,5 @@
+import cv2
+import numpy as np
 from PIL import Image
 from pdf2image import convert_from_path
 import PyPDF2
@@ -68,3 +70,27 @@ def curate_text(text: str):
     return data[0]["generated_text"]
 
 
+def extract_check_box(image_path):
+    """
+    Find if color black is present in the image.
+
+    """
+
+    """
+        Check if the color black is present in the image.
+        """
+    # Load the image
+    img = cv2.imread(image_path)
+
+    # Define the color range for black
+    lower_black = np.array([0, 0, 0])
+    upper_black = np.array([15, 15, 15])
+
+    # Create a mask to detect the black pixels within the range
+    mask = cv2.inRange(img, lower_black, upper_black)
+
+    # If any black pixels are found, return True
+    if np.sum(mask) > 0:
+        return True
+    else:
+        return False
