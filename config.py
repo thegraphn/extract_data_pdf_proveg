@@ -1,11 +1,14 @@
+"""
+This file contains the configuration for the OCR-Tool
+"""
 sub_images_coordinates = {
     "0.png":
         {
-            "geplante_kategorie_vegan": {"art":"check_box","coordinates":(1678, 406,1739,453)},
-            "geplante_kategorie_vegetarisch": {"art":"check_box","coordinates":(1994, 409, 2060, 460)},
-            "prüfungsart_standart-prüfung":{"art":"check_box","coordinates":(684, 524, 769, 605)},
-            "prüfungsart_express-prüfung":{"art":"check_box","coordinates":(1218, 518, 1305, 608)},
-            "rezepturänderung": {"art":"check","coordinates":(683, 637, 769, 721)},
+            "geplante_kategorie_vegan": {"art": "check_box", "coordinates": (1678, 406, 1739, 453)},
+            "geplante_kategorie_vegetarisch": {"art": "check_box", "coordinates": (1994, 409, 2060, 460)},
+            "prüfungsart_standart-prüfung": {"art": "check_box", "coordinates": (684, 524, 769, 605)},
+            "prüfungsart_express-prüfung": {"art": "check_box", "coordinates": (1218, 518, 1305, 608)},
+            "rezepturänderung": {"art": "check", "coordinates": (683, 637, 769, 721)},
             "rezepturänderung_lizenznummer": {"art": "text", "coordinates": (813, 731, 1515, 812)},
             "dieses_produkt_is_ein_einzelhandelprodukt": {"art": "check_box", "coordinates": (683, 850, 771, 938)},
             "dieses_produkt_is_ein_halffabrikat": {"art": "check_box", "coordinates": (1429, 851, 1516, 938)},
@@ -13,7 +16,7 @@ sub_images_coordinates = {
             "produktname": {"art": "text", "coordinates": (682, 1088, 2264, 1177)},
             "marke": {"art": "text", "coordinates": (1214, 1208, 2258, 1294)},
             "bezeichnungs_des_lebensmittels": {"art": "text", "coordinates": (0, 0, 100, 100)},
-            "artikelnummer_im_handel": {"art": "text", "coordinates": ( 1213, 1566,2262, 1652,)},
+            "artikelnummer_im_handel": {"art": "text", "coordinates": (1213, 1566, 2262, 1652,)},
             "artikelnummer_in_der_produktionstätte": {"art": "text", "coordinates": (1212, 1565, 2259, 1652)},
             "geplanntes_einführungsdatum_des_v_labels": {"art": "text", "coordinates": (1213, 1685, 2258, 1770)},
             "einfürhrung_geplant_in_folgenden_ländern": {"art": "text", "coordinates": (1212, 1801, 2259, 1890)},
@@ -43,6 +46,5 @@ sub_images_coordinates = {
         "bezeichnung_20": {"art": "text", "coordinates": (165, 3202, 994, 3271)},
 
     }
-
 
 }

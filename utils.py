@@ -1,3 +1,4 @@
+import os
 import cv2
 import numpy as np
 import pandas as pd
@@ -6,13 +7,17 @@ import PyPDF2
 import pytesseract
 from PIL import Image
 from transformers import pipeline
+
+
 def create_dir(path):
     """
     Create a directory if it doesn't exist.
     """
-    import os
+
     if not os.path.exists(path):
         os.makedirs(path)
+    else:
+        print(f"Directory {path} already exists.")
 
 
 def pdf_to_image(pdf_path, output_path, dpi=300):
@@ -40,13 +45,14 @@ def pdf_to_text(pdf_path):
     return text
 
 
-def cut_image(image_path, output_path, x, y, width, height):
+def cut_image(image_path, x, y, width, height, output_path=None):
     """
-    Cut a section of an image and save it.
+    Cut a section of an image. Save it if a path is provided.
     """
     image = Image.open(image_path)
     section = image.crop((x, y, width, height))
-    section.save(output_path)
+    if output_path:
+        section.save(output_path)
     return output_path
 
 
@@ -59,16 +65,19 @@ def image_to_text(image_path: str):
     return generated_text
 
 
-def curate_text(text: str):
+def correct_text(text: str) -> str:
+    """
+    Correct the spelling of a text.
+    Could be improved !
+    """
 
     fix_spelling = pipeline("text2text-generation", model="oliverguhr/spelling-correction-german-base")
-    t = "correct:" + text
-    data = fix_spelling(t, max_length=256)
+    input_text = "correct:" + text
+    data = fix_spelling(input_text, max_length=256)
     return data[0]["generated_text"]
 
 
 def extract_check_box(image_path):
-
     """
         Check if the color black is present in the image.
         """
@@ -85,12 +94,11 @@ def extract_check_box(image_path):
     # If any black pixels are found, return True
     if np.sum(mask) > 0:
         return True
-    else:
-        return False
+    return False
 
 
 def convert_data_model(data: pd.DataFrame) -> pd.DataFrame:
     """
     Convert the data to the model
     """
-    raise NotImplementedError
+    return data
