@@ -1,10 +1,11 @@
 import cv2
 import numpy as np
-from PIL import Image
+import pandas as pd
 from pdf2image import convert_from_path
 import PyPDF2
-
-
+import pytesseract
+from PIL import Image
+from transformers import pipeline
 def create_dir(path):
     """
     Create a directory if it doesn't exist.
@@ -53,16 +54,12 @@ def image_to_text(image_path: str):
     """
     Extract text from an image.
     """
-    import pytesseract
-    from PIL import Image
-
     image = Image.open(image_path).convert("RGB")
     generated_text = pytesseract.image_to_string(image)
     return generated_text
 
 
 def curate_text(text: str):
-    from transformers import pipeline
 
     fix_spelling = pipeline("text2text-generation", model="oliverguhr/spelling-correction-german-base")
     t = "correct:" + text
@@ -71,10 +68,6 @@ def curate_text(text: str):
 
 
 def extract_check_box(image_path):
-    """
-    Find if color black is present in the image.
-
-    """
 
     """
         Check if the color black is present in the image.
@@ -94,3 +87,10 @@ def extract_check_box(image_path):
         return True
     else:
         return False
+
+
+def convert_data_model(data: pd.DataFrame) -> pd.DataFrame:
+    """
+    Convert the data to the model
+    """
+    raise NotImplementedError

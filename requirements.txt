@@ -1,0 +1,9 @@
+pandas
+tqdm
+opencv-python
+numpy
+pypdf2
+pdf2image
+pytesseract
+packaging
+transformers
