@@ -52,6 +52,7 @@ def main(pdf_path: str, local_tmp_image_dir: str) -> pd.DataFrame:
         for name, values in data.items():
             data_converted.append([page, name, values["data_extracted"]])
     data_extracted_df = pd.DataFrame(data_converted, columns=["page", "name", "data"])
+    data_extracted_df["document_path"] = pdf_path
     # delete the temporary folder
     image_to_delete = glob(f"{local_tmp_image_dir}/*.png")
     for image_path in image_to_delete:
@@ -69,4 +70,5 @@ if __name__ == "__main__":
                                               desc=f"Extracting data from PDFs in {PDF_DIR_PATH}...")
                         ]
     df = pd.concat(extract_data_dfs)
-    convert_data_model(df)
+    df = convert_data_model(df)
+    df.to_csv("extracted_data.csv", index=False)

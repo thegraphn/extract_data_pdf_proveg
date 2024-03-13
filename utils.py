@@ -74,7 +74,10 @@ def correct_text(text: str) -> str:
     fix_spelling = pipeline("text2text-generation", model="oliverguhr/spelling-correction-german-base")
     input_text = "correct:" + text
     data = fix_spelling(input_text, max_length=256)
-    return data[0]["generated_text"]
+    data_generated = data[0]["generated_text"]
+    if len(data_generated) < 1:
+        return "text could not be corrected"
+    return data_generated
 
 
 def extract_check_box(image_path):
